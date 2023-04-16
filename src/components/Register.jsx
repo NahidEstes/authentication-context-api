@@ -1,15 +1,20 @@
-import React from "react";
-
-const handleSubmitButton = (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const name = form.name.value;
-  const email = form.name.value;
-  const password = form.email.value;
-  //   console.log(name, email, password);
-};
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProviders";
 
 const Register = () => {
+  const user = useContext(AuthContext);
+  console.log(user);
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.name.value;
+    const password = form.email.value;
+    console.log(name, email, password);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -96,6 +101,15 @@ const Register = () => {
                 />
               </div>
             </div> */}
+
+            <div>
+              <label>
+                <Link to="/login" className="btn-link">
+                  Already have an account?
+                </Link>
+              </label>
+            </div>
+
             <div className="pt-5">
               <button
                 type="submit"
@@ -106,6 +120,9 @@ const Register = () => {
             </div>
           </form>
         </div>
+      </div>
+      <div>
+        <h2>This is Home {user && <span>{user.displayName}</span>}</h2>
       </div>
     </div>
   );
