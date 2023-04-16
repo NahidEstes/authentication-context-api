@@ -6,7 +6,7 @@ const handleSubmitButton = (e) => {
   const name = form.name.value;
   const email = form.name.value;
   const password = form.email.value;
-  console.log(name, email, password);
+  //   console.log(name, email, password);
 };
 
 const Register = () => {
