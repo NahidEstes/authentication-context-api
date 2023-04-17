@@ -3,16 +3,23 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
 const Register = () => {
-  const user = useContext(AuthContext);
-  console.log(user);
+  const { user, createUser } = useContext(AuthContext);
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const email = form.name.value;
-    const password = form.email.value;
-    console.log(name, email, password);
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        form.reset();
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -121,9 +128,7 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <div>
-        <h2>This is Home {user && <span>{user.displayName}</span>}</h2>
-      </div>
+      <div></div>
     </div>
   );
 };
